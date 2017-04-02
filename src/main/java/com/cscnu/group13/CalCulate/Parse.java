@@ -3,10 +3,10 @@ package com.cscnu.group13.CalCulate;
 import java.util.ArrayList;
 
 class Parse{
-	public ArrayList<Object> List = new ArrayList<Object>();
+	public ArrayList<Object> list = new ArrayList<Object>();
 	
-	private String calString;	// °è»ê ÀÔ·Â ½Ä
-	private char ch;	// ¹®ÀÚ¿­ÀÇ ÇÑ±ÛÀÚ ÇÑ±ÛÀÚ
+	private String calString;	// ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½
+	private char ch;	// ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½
 	
 	public Parse(String calString){
 		this.setCalString(calString);
@@ -28,17 +28,17 @@ class Parse{
 		while(this.getCh() != '\0'){
 			String number = new String();
 			int i = 0;
-			if(this.getCh() == ('+'|'-'|'*'|'/') ){		// ¿¬»ê±âÈ£ÀÏ °æ¿ì ¸®½ºÆ®¿¡ Ãß°¡
-				this.List.add(this.getCh());
-				this.setCh(this.getCalString().charAt(++i));	//Ch¸¦ calStringÀÇ ´ÙÀ½ char·Î ¼³Á¤
-			}else if(Character.isDigit(this.getCh())){			//ch°¡ ¼ýÀÚÀÏ ¶§
-				while(Character.isDigit(this.getCh())){			//ch°¡ ¼ýÀÚÀÎ µ¿¾È String number¿¡ ¼ýÀÚ¸¦ ÀÌ¾î¼­ ÀúÀå
+			if(this.getCh() == ('+'|'-'|'*'|'/'|'('|')') ){		// ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
+				this.list.add(this.getCh());
+				this.setCh(this.getCalString().charAt(++i));	//Chï¿½ï¿½ calStringï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ charï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			}else if(Character.isDigit(this.getCh())){			//chï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+				while(Character.isDigit(this.getCh())){			//chï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ String numberï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ì¾î¼­ ï¿½ï¿½ï¿½ï¿½
 					number += this.getCh();
 					this.setCh(this.getCalString().charAt(++i));
 				}
-				this.List.add(number);
+				this.list.add(number);
 			}else {
-				throw new NumberFormatException("Àß¸øµÈ Çü½ÄÀÔ´Ï´Ù.");		// ÀÌ¿ÜÀÇ ¹®ÀÚ°¡ µé¾î¿ÔÀ» °æ¿ì ¿¡·¯¸¦ ¹ß»ý
+				throw new NumberFormatException();		// ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
 			}
 		}
 		return true;
