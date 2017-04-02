@@ -4,20 +4,21 @@ class Calculate{
 
 	Object add(Object a, Object b){
 	
-		return (Object) a+b;
+		return 0;//(Object) a+b;
 	}
 	
 	Object sub(Object a, Object b){
 		
-		return (Object) a-b;
+		return 1;//(Object) a-b;
 	}
 
 	Object mul(Object a, Object b){
 
-		return (Object) a*b;
+		return 2;
+				//(Object) a*b;
 	}
 	Object div(Object a, Object b) {
 
-		return (Object) a/b;
+		return 3;//(Object) a/b;
 	}
 }
