@@ -1,3 +1,4 @@
+package team13;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -83,7 +84,7 @@ public class Calculate {
 			curToken = this.postfix[p++];
 			if(curToken.isDigit()){
 				this.vStack.push(Integer.parseInt(String.valueOf(curToken.getElement()))); 
-				// char -> int (char ÇüÀº toStringºÒ°¡)
+				// char -> int (char ï¿½ï¿½ï¿½ï¿½ toStringï¿½Ò°ï¿½)
 			}
 			else{
 				popToken2 = this.vStack.pop();
