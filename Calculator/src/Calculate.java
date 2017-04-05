@@ -36,13 +36,13 @@ public class Calculate {
 			if (curToken.isDigit())
 				this.postfix[p++] = curToken;
 			else {
-				if (curToken.getElement().charAt(0) == ')') {
+				if (curToken.getState() == Parse.CLOSE_PARENTHESIS) {
 					if (!this.oStack.isEmpty())
 						poppedToken = (Token) this.oStack.pop();
 					else
 						return false;
 
-					while (poppedToken.getElement().charAt(0) != '(') {
+					while (poppedToken.getState() != Parse.OPEN_PARENTHESIS) {
 						this.postfix[p++] = poppedToken;
 						if (!this.oStack.isEmpty())
 							poppedToken = (Token) this.oStack.pop();
@@ -88,16 +88,16 @@ public class Calculate {
 			else{
 				popToken2 = this.vStack.pop();
 				popToken1 = this.vStack.pop();
-				if(curToken.getElement().charAt(0) == '+'){
+				if(curToken.getState() == Parse.PLUS){
 					this.vStack.push(popToken1 + popToken2);
 				}
-				else if(curToken.getElement().charAt(0) == '-'){
+				else if(curToken.getState() == Parse.MINUS){
 					this.vStack.push(popToken1 - popToken2);
 				}
-				else if(curToken.getElement().charAt(0) == '*'){
+				else if(curToken.getState() == Parse.MULTIPLY){
 					this.vStack.push(popToken1 * popToken2);
 				}
-				else if(curToken.getElement().charAt(0) == '/'){
+				else if(curToken.getState() == Parse.DIVISION){
 					this.vStack.push(popToken1 / popToken2);
 				}
 			}
@@ -107,26 +107,26 @@ public class Calculate {
 	}
 
 	private int inComingPrecedence(Token givenToken) {
-		if (givenToken.getElement().charAt(0) == '+' || givenToken.getElement().charAt(0) == '-')
+		if (givenToken.getState() == Parse.PLUS || givenToken.getState() == Parse.MINUS)
 			return 12;
-		else if (givenToken.getElement().charAt(0) == '*' || givenToken.getElement().charAt(0) == '/')
+		else if (givenToken.getState() == Parse.MULTIPLY || givenToken.getState() == Parse.DIVISION)
 			return 13;
-		else if (givenToken.getElement().charAt(0) == '(')
+		else if (givenToken.getState() == Parse.OPEN_PARENTHESIS)
 			return 20;
-		else if (givenToken.getElement().charAt(0) == ')')
+		else if (givenToken.getState() == Parse.CLOSE_PARENTHESIS)
 			return 19;
 		else
 			return 0;
 	}
-
+// getState로 가져와서 비교하도록 만들면 됨
 	private int inStackPrecedence(Token givenToken) {
-		if (givenToken.getElement().charAt(0) == '+' || givenToken.getElement().charAt(0) == '-')
+		if (givenToken.getState() == Parse.PLUS || givenToken.getState() == Parse.MINUS)
 			return 12;
-		else if (givenToken.getElement().charAt(0) == '*' || givenToken.getElement().charAt(0) == '/')
+		else if (givenToken.getState() == Parse.MULTIPLY || givenToken.getState() == Parse.DIVISION)
 			return 13;
-		else if (givenToken.getElement().charAt(0) == '(')
+		else if (givenToken.getState() == Parse.OPEN_PARENTHESIS)
 			return 0;
-		else if (givenToken.getElement().charAt(0) == ')')
+		else if (givenToken.getState() == Parse.CLOSE_PARENTHESIS)
 			return 19;
 		else
 			return 0;
