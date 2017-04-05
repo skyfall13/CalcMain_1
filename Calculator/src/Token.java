@@ -2,9 +2,15 @@
 public class Token {
 
 private String element;
+private int state;
 	
-	public Token(String givenElement){
+	public Token(String givenElement, int givenState){
 		this.element = givenElement;
+		this.state = givenState;
+	}
+	
+	public int getState(){
+		return this.state;
 	}
 	
 	public String getElement(){
